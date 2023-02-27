@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Home from './components/Home';
-import Body from './components/Body';
+
+//all the components are load in this file
+import Login from './components/login';
 
 function App() {
   return (
-    <div>
-     <Home/>
-     <Body/>
+    <div style={{marginTop:"55px"}}>
+      <Login/>
     </div>
   );
 }
