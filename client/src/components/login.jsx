@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { Box, TextField, Button, styled, Typography } from "@mui/material";
-import { textAlign } from "@mui/system";
 
 const Component = styled(Box)`
   width: 350px;
@@ -19,7 +18,7 @@ const Image = styled("img")({
 const Wrapper = styled(Box)`
   padding: 15px 25px;
   display: flex;
-  flex: 1;
+  flex: flex-start;
   flex-direction: column;
   & > div,
   & > button,
@@ -43,26 +42,26 @@ const Text = styled(Typography)`
 
 
 const signupInitialValues = {
-  name:'',
-  username:'',
-  password:''
+  name: '',
+  username: '',
+  password: ''
 }
 
 const Login = () => {
   const [account, toggleAccout] = useState("login");
   const [signup, setSignup] = useState(signupInitialValues);
 
-  const toggleSignup =()=>{
-    account === 'signup' ? toggleAccout('login'):toggleAccout('signup');
-  }
-  
-  const onInputChange = (event) =>{
-    setSignup({...signup,[event.target.name]:event.target.value});
+  const toggleSignup = () => {
+    account === 'signup' ? toggleAccout('login') : toggleAccout('signup');
   }
 
-  const  signupUser = ()=>{
-//call api 
-    
+  const onInputChange = (event) => {
+    setSignup({ ...signup, [event.target.name]: event.target.value });
+  }
+
+  const signupUser = () => {
+    //call api 
+
   }
 
   return (
@@ -84,15 +83,15 @@ const Login = () => {
                 height: "38px",
                 borderRadius: "3px",
                 boxShadow: " 0 2px 4px 0 rgb(0 0 0/ 20%",
-              }} onClick={()=>toggleSignup()}>
+              }} onClick={() => toggleSignup()}>
               Create an account
             </Button>
           </Wrapper>
         ) : (
           <Wrapper>
-            <TextField variant="standard" onChange={(event)=> onInputChange(event)} name="name" label="Enter Name" />
-            <TextField variant="standard" onChange={(event)=> onInputChange(event)} name="username" label="Enter Username" />
-            <TextField variant="standard" onChange={(event)=> onInputChange(event)} name="password" label="Enter Password" />
+            <TextField variant="standard" onChange={(event) => onInputChange(event)} name="name" label="Enter Name" />
+            <TextField variant="standard" onChange={(event) => onInputChange(event)} name="username" label="Enter Username" />
+            <TextField variant="standard" onChange={(event) => onInputChange(event)} name="password" label="Enter Password" />
             <Button
               variant="outlined"
               style={{
@@ -103,11 +102,11 @@ const Login = () => {
                 borderRadius: "3px",
                 boxShadow: " 0 2px 4px 0 rgb(0 0 0/ 20%",
               }}
-            onClick ={()=>signupUser()}>
+              onClick={() => signupUser()}>
               Create an account
             </Button>
             <Text style={{ textAlign: "center" }}>OR</Text>
-            <LoginButton variant="contained" onClick={()=> toggleSignup()}>Already have an account</LoginButton>
+            <LoginButton variant="contained" onClick={() => toggleSignup()}>Already have an account</LoginButton>
           </Wrapper>
         )}
       </Box>
