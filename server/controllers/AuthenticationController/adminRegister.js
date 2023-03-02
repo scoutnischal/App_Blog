@@ -1,5 +1,5 @@
-const admin = require('../models/admin');
-const helper = require('./../helpers/authHelper');
+const admin = require('../../models/admin');
+const helper = require('../../helpers/authHelper');
 
 const registerController = async (req, res) => {
     let pattern = /@gmail.com/;

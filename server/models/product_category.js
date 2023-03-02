@@ -2,8 +2,14 @@ const mongoose = require("mongoose");
 
 const CategorySchema = new mongoose.Schema(
   {
-    cat_ID: { type:Number, required:true, unique:true},
-    name: { type: String, required: true },
+    name: { type: String, 
+      required: true,
+      unique: true
+    },
+    slug: {
+      type: String,
+      lowercase: true,
+    }
   },
   { timestamps: true }
 );

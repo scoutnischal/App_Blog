@@ -1,6 +1,7 @@
-const admin = require('../models/admin');
+
 const JWT = require("jsonwebtoken");
-const helper = require('../helpers/authHelper')
+const admin = require('../../models/admin');
+const helper = require('../../helpers/authHelper');
 
 
   //POST LOGIN

@@ -1,14 +1,15 @@
-import JWT from "jsonwebtoken";
-import adminModel from "../models/admin";
+const JWT = require("jsonwebtoken");
+const adminModel = require("../models/admin")
 
-//Protected Routes token base
-export const requireSignIn = async (req, res, next) => {
+
+//Protected Routes based on token
+const requireSignIn = async (req, res, next) => {
   try {
     const decode = JWT.verify(
       req.headers.authorization,
       process.env.JWT_SECRET
     );
-    req.user = decode;
+    req.admin = decode;
     next();
   } catch (error) {
     console.log(error);
@@ -16,10 +17,10 @@ export const requireSignIn = async (req, res, next) => {
 };
 
 //admin acceess
-export const isAdmin = async (req, res, next) => {
+const isAdmin = async (req, res, next) => {
   try {
-    const user = await adminModel.findById(req.user._id);
-    if (user.role !== 1) {
+    const admin = await adminModel.findById(req.admin._id);
+    if (admin.role !== 1) {
       return res.status(401).send({
         success: false,
         message: "UnAuthorized Access",
@@ -32,7 +33,8 @@ export const isAdmin = async (req, res, next) => {
     res.status(401).send({
       success: false,
       error,
-      message: "Error in admin middelware",
+      message: "Error in admin middleware",
     });
   }
 };
+module.exports = {requireSignIn, isAdmin}
