@@ -20,9 +20,10 @@ connect(process.env.MONGO_URL)
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/adminn", authRoutes);
+app.use("/api/admin", authRoutes);
 app.use("/api/category", categoryRoute);
 
 app.listen(process.env.PORT || 5000, ()=>{
+    console.log("Hello");
     console.log("Server is running")
 });
