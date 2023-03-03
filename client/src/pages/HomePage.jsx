@@ -1,8 +1,13 @@
 import React from 'react'
+import CarouselDiv from '../components/CarouselDiv';
+import FetchProductsHome from '../components/FetchProductsHome';
 
 const HomePage = () => {
   return (
-    <div>Home Page</div>
+    <>
+    <CarouselDiv/>
+    <FetchProductsHome/>
+    </>
   )
 }
 
