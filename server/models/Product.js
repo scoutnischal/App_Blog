@@ -1,20 +1,41 @@
 const mongoose = require("mongoose");
-const fs = require('fs');
 
 const ProductSchema = new mongoose.Schema({
-    Title: {type: String , required: true},
-    Description: {type: String , required: true},
-    //sub_cat_id: {type: Number, required: true, unique: true},
+    title: {type: String , required: true},
+    slug: {
+      type: String,
+      required: true,
+    },
+    description: {type: String , required: true},
    
-    Category: {type: mongoose.ObjectId, required: true}, //putting category names into array
-    Quantity: {type: Number , required: true},
-    Image: {
-      data: Buffer, required: true, contentType: String
+    category: {type: mongoose.ObjectId,
+      ref: "Category",
+      required: true,}, //putting category names into array
+    stock: {
+      type: Number,
+      required: [true, "Please Enter product Stock"],
+      maxLength: [4, "Stock cannot exceed 4 characters"],
+      default: 1,
+    },
+    ratings: {
+      type: Number,
+      default: 0,
+    },
+    numOfReviews: {
+      type: Number,
+      default: 0,
+    },
+    image: {
+      data: Buffer,
+      contentType: String
     },  // casted to MongoDB's BSON type: binData
-    Price: {type: String, required:true}
+    shipping: {
+      type: Boolean,
+    },
+    price: {type: Number, required:true}
   //for current date using createdAt:Date.now() and updatedAt, we can also use which is already in mongooseDB
 },{timestamps: true}
 );
 
 
-module.exports = mongoose.models("Product",ProductSchema);
+module.exports = mongoose.model("Product",ProductSchema);

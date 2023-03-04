@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const authRoutes = require('./routes/authRoute');
-const categoryRoute = require('./routes/categoryRoute')
+const categoryRoute = require('./routes/categoryRoute');
+const productRoute = require('./routes/productRoute');
 
 dotenv.config(); // to call the .env file and access the value
 
@@ -22,8 +23,8 @@ app.use(express.json());
 
 app.use("/api/admin", authRoutes);
 app.use("/api/category", categoryRoute);
+app.use("/api/product",productRoute);
 
 app.listen(process.env.PORT || 5000, ()=>{
-    console.log("Hello");
     console.log("Server is running")
 });

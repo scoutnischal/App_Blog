@@ -14,4 +14,4 @@ const UserSchema = new mongoose.Schema({
     //for current date using createdAt:Date.now() and updatedAt, we can also use which is already in mongooseDB
 },{timestamps: true}
 );
-module.exports = mongoose.models("user",UserSchema);
+module.exports = mongoose.model("user",UserSchema);
