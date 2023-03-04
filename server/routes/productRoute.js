@@ -1,5 +1,5 @@
 const express = require("express"); 
-const { isAdmin, requireSignIn } = require('../middleware/authMiddleware'); 
+const {requireSignIn} = require('../middleware/authMiddleware'); 
 const formidable = require("express-formidable"); //for image upload
 const createProductController = require("../controllers/ProductController/createProduct");
 const getAllProducts = require("../controllers/ProductController/getAllProduct");
@@ -9,7 +9,7 @@ const deleteProductController = require("../controllers/ProductController/delete
 const updateProductController = require("../controllers/ProductController/updateProduct");
 //const productFiltersController = require("../controllers/ProductController/filterProduct");
 const productCountController = require("../controllers/ProductController/countProduct");
-const realtedProductController = require('../controllers/ProductController/similarProducts');
+const relatedProductController = require('../controllers/ProductController/similarProducts');
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ const router = express.Router();
 router.post( "/create-product",requireSignIn,formidable(),
   createProductController
 );
-//get products
+//get all products
 router.get("/get-all-product", getAllProducts);
 
 //single product
@@ -27,7 +27,7 @@ router.get("/get-product/:slug", getSingleProductController);
 //get photo
 router.get("/product-photo/:pid", productPhotoController);
 
-//delete rproduct
+//delete product
 router.delete("/delete-product/:pid", deleteProductController);
 
 //Update Product
@@ -40,7 +40,7 @@ router.put(
 router.get("/product-count", productCountController);
 
 //similar product
-router.get("/related-product/:pid/:cid", realtedProductController);
+router.get("/related-product/:pid/:cid", relatedProductController);
 
 // //filter product
 // router.get("/product-filters", productFiltersController);
