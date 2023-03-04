@@ -7,7 +7,9 @@ const getSingleProductController = require("../controllers/ProductController/get
 const productPhotoController = require("../controllers/ProductController/getPhotoProduct");
 const deleteProductController = require("../controllers/ProductController/deleteProduct");
 const updateProductController = require("../controllers/ProductController/updateProduct");
-const productFiltersController = require("../controllers/ProductController/filterProduct");
+//const productFiltersController = require("../controllers/ProductController/filterProduct");
+const productCountController = require("../controllers/ProductController/countProduct");
+const realtedProductController = require('../controllers/ProductController/similarProducts');
 
 const router = express.Router();
 
@@ -33,33 +35,23 @@ router.put(
     "/update-product/:pid", requireSignIn,formidable(), updateProductController
   );
 
-//filter product
-router.get("/product-filters", productFiltersController);
-
-module.exports = router;
-/*
-
 
 //product count
 router.get("/product-count", productCountController);
 
-//product per page
-router.get("/product-list/:page", productListController);
-
-//search product
-router.get("/search/:keyword", searchProductController);
-
 //similar product
 router.get("/related-product/:pid/:cid", realtedProductController);
 
-//category wise product
-router.get("/product-category/:slug", productCategoryController);
+// //filter product
+// router.get("/product-filters", productFiltersController);
 
-//payments routes
-//token
-router.get("/braintree/token", braintreeTokenController);
 
-//payments
-router.post("/braintree/payment", requireSignIn, brainTreePaymentController);
-*/
+module.exports = router;
+
+
+
+// //search product
+// router.get("/search/:keyword", searchProductController);
+
+
 
