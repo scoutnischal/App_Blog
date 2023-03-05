@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const authRoutes = require('./routes/authRoute');
+const adminauthRoutes = require('./routes/adminAuthenRoute');
+const clientauthRoutes = require("./routes/clientAuthenRoute");
 const categoryRoute = require('./routes/categoryRoute');
 const productRoute = require('./routes/productRoute');
 
@@ -11,7 +12,10 @@ dotenv.config(); // to call the .env file and access the value
 
 //promise return garxa.. so then() use
 mongoose.  
-connect(process.env.MONGO_URL)
+connect(process.env.MONGO_URL,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+})
 //("mongodb+srv://ankitmaharjan10:dUcxvY2XdXwZVhxZ@cluster0.g7jmgbd.mongodb.net/Computer_Shop?retryWrites=true&w=majority")
 .then(()=>{
     console.log("DB connection Succesfull")})
@@ -21,7 +25,8 @@ connect(process.env.MONGO_URL)
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/admin", authRoutes);
+app.use("/api/admin", adminauthRoutes);
+app.use("/api/client", clientauthRoutes);
 app.use("/api/category", categoryRoute);
 app.use("/api/product",productRoute);
 

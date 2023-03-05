@@ -32,7 +32,7 @@ const loginController = async (req, res) => {
     }
     //Creating token
     const token = await JWT.sign({ _id: adminData._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
+      expiresIn: "14d",
     });
     res.status(200).send({
       success: true,

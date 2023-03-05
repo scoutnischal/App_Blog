@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 //const admin = require('../models/admin')
-const registerController = require("../controllers/AuthenticationController/adminRegister");
-const loginController = require("../controllers/AuthenticationController/loginAdmin");
-const testController = require("../controllers/AuthenticationController/testController");
+const registerController = require("../controllers/AdminAuthenticationController/adminRegister");
+const loginController = require("../controllers/AdminAuthenticationController/loginAdmin");
+const testController = require("../controllers/AdminAuthenticationController/testController");
 const { isAdmin, requireSignIn } = require("../middleware/authMiddleware");
-const forgotPasswordController = require('../controllers/AuthenticationController/forgotpasswordController')
-const updateProfileController = require('../controllers/AuthenticationController/updateProfile');
+const forgotPasswordController = require('../controllers/AdminAuthenticationController/forgotpasswordController')
+const updateProfileController = require('../controllers/AdminAuthenticationController/updateProfile');
 
 
 //REGISTER ADMIN
