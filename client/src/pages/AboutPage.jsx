@@ -1,9 +1,10 @@
 import React from 'react'
+import Layout from '../components/Layout'
 import '../css/AboutUs.css'
 
 const AboutPage = () => {
   return (
-    <>
+    <Layout title={"about-ecommerce"} >
     <div className='contact-main'>
       <div className='heading-about'>
         <h1 className='h1-text'>About us</h1>
@@ -42,8 +43,8 @@ const AboutPage = () => {
       </div>
       </div>
     </div>
-  </>
+  </Layout>
   )
 }
 
-export default AboutPage
+export default AboutPage;

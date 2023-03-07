@@ -1,11 +1,12 @@
 import React from 'react'
 import '../css/header.css'
 import { FaLocationArrow } from 'react-icons/fa'
-import { AiFillShopping,AiOutlineShoppingCart } from 'react-icons/ai'
+import { AiFillShopping, AiOutlineShoppingCart } from 'react-icons/ai'
 
-import { BsPersonFill, BsSearch,BsSuitHeart } from 'react-icons/bs'
+import { BsPersonFill, BsSearch, BsSuitHeart } from 'react-icons/bs'
 
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import { useAuth } from './context/Auth'
 
 
 const Header = () => {
@@ -15,10 +16,18 @@ const Header = () => {
     { id: 3, name: "My Account", icons: <BsPersonFill />, link: "" },
   ];
   const mainNav = [
-    { id: 1, name: "Home" ,link:'/'},
-    { id: 2, name: "About Us",link:'/about'},
-    { id: 3, name: "Contact Us",link:'/contact' }
+    { id: 1, name: "Home", link: '/' },
+    { id: 2, name: "All Products", link: '/products' },
+    { id: 2, name: "About Us", link: '/about' },
+    { id: 3, name: "Contact Us", link: '/contact' }
   ]
+  const [auth, setAuth] = useAuth();
+  const handleLogout = () => {
+    setAuth({
+      ...auth, user: null, token: ''
+    })
+    localStorage.removeItem("auth");
+  }
   return (
     <>
       <header className='header-top-main '>
@@ -56,23 +65,56 @@ const Header = () => {
             </div>
             <div className="col-4 px-6">
               <div className="header-upper-links d-flex align-items-center justify-content-between">
-                <div>
-                  <Link className="d-flex align-items-center justify-content-center text-dark">
-                  <BsPersonFill />
+                <div >
+                  <Link to='/accounts' className="d-flex align-items-center justify-content-center text-dark">
+                    <BsPersonFill />
                     <p className=' mb-0 px-2'>My Account</p>
                   </Link>
                 </div>
                 <div> <Link className='d-flex align-items-center justify-content-center text-dark'>
-                    <BsSuitHeart/>
-                    <p className=' mb-0 px-2'>WhishList</p>
-                  </Link></div>
+                  <BsSuitHeart />
+                  <p className=' mb-0 px-2'>WhishList</p>
+                </Link></div>
                 <div> <Link className='d-flex align-items-center justify-content-center text-dark'>
-                    <AiOutlineShoppingCart/>
-                    <p className='mb-0 px-2'>Cart</p>
-                  </Link></div>
-
+                  <AiOutlineShoppingCart />
+                  <p className='mb-0 px-2'>Cart</p>
+                </Link></div>
+                <div> {
+                  !auth.user ? (<></>) : (<>
+                  <div className="nav-item dropdown">
+                    <NavLink
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      style={{ border: "none" }}
+                    >
+                      {auth?.user.role===1?"Admin":"User"}
+                    </NavLink>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink
+                          to={`/dashboard/${auth?.user.role===1?"Admin":"User"}`}
+                          className="dropdown-item"
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          onClick={handleLogout}
+                          to="/accounts"
+                          className="dropdown-item"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                  </>)
+                }
+                </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -85,7 +127,7 @@ const Header = () => {
         <div className="right-bottom-header">
           <ul>
             {
-              mainNav.map((mnav)=>(
+              mainNav.map((mnav) => (
                 <li key={mnav.id}><Link to={mnav.link} className="text-dark">{mnav.name}</Link></li>
               ))
             }

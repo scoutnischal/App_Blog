@@ -1,11 +1,13 @@
 import { useState } from "react";
+import img1 from '../assets/images/ecomerce.png'
 
 import { Box, TextField, Button, styled, Typography } from "@mui/material";
 
 const Component = styled(Box)`
   width: 350px;
   margin: auto;
-  box-shadow: 5px 3px 5px 3px rgb(0 0 0/0.7);
+  padding:1rem;
+  box-shadow: 2px 3px 8px 0px rgb(0 0 0/0.3);
 `;
 
 const Image = styled("img")({
@@ -42,7 +44,6 @@ const Text = styled(Typography)`
 
 
 const signupInitialValues = {
-  name: '',
   username: '',
   password: ''
 }
@@ -57,17 +58,27 @@ const Login = () => {
 
   const onInputChange = (event) => {
     setSignup({ ...signup, [event.target.name]: event.target.value });
+    console.log(signup);
   }
 
-  const signupUser = () => {
-    //call api 
+  const signupUser = (e) => {
+    e.preventDefault();
+
+    try{
+
+    }
+    catch(err){
+      console.log(err);
+    }
+    
+  console.log("Inside Login",signup);
 
   }
 
   return (
-    <Component>
-      <Box>
-        <Image src="./images/Blog.png" alt="image not found" />
+    <Component style={{marginTop:"35px"}}>
+      <Box >
+        <Image src={img1} alt="image not found" />
         {account === "login" ? (
           <Wrapper>
             <TextField variant="standard" label="Enter username" />
@@ -82,16 +93,17 @@ const Login = () => {
                 color: "#2874f0",
                 height: "38px",
                 borderRadius: "3px",
-                boxShadow: " 0 2px 4px 0 rgb(0 0 0/ 20%",
+                boxShadow: " 0 2px 4px 0 rgb(0 0 0/ 20%)",
               }} onClick={() => toggleSignup()}>
               Create an account
             </Button>
           </Wrapper>
         ) : (
           <Wrapper>
-            <TextField variant="standard" onChange={(event) => onInputChange(event)} name="name" label="Enter Name" />
             <TextField variant="standard" onChange={(event) => onInputChange(event)} name="username" label="Enter Username" />
             <TextField variant="standard" onChange={(event) => onInputChange(event)} name="password" label="Enter Password" />
+            <TextField variant="standard" onChange={(event) => onInputChange(event)} name="email" label="Enter Email" />
+            <TextField variant="standard" onChange={(event) => onInputChange(event)} name="address" label="Enter Address" />
             <Button
               variant="outlined"
               style={{
@@ -100,9 +112,9 @@ const Login = () => {
                 color: "#2874f0",
                 height: "38px",
                 borderRadius: "3px",
-                boxShadow: " 0 2px 4px 0 rgb(0 0 0/ 20%",
+                boxShadow: " 0 2px 4px 0 rgb(0 0 0/ 20%)",
               }}
-              onClick={() => signupUser()}>
+              onClick={(e) => signupUser(e)}>
               Create an account
             </Button>
             <Text style={{ textAlign: "center" }}>OR</Text>

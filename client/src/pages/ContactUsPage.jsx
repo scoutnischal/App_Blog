@@ -1,10 +1,11 @@
 import React from 'react'
+import Layout from '../components/Layout'
 import Map from '../components/Map'
 import '../css/Contact.css'
 
 const ContactUsPage = () => {
   return (
-   <>
+   <Layout title={"contact-us ecommerce"}>
    <div className="main-contact">
     <div className="heading-contact">
       <h1>Contact Us</h1>
@@ -33,7 +34,7 @@ const ContactUsPage = () => {
     </div>
     </div>
    </div>
-   </>
+   </Layout>
   )
 }
 

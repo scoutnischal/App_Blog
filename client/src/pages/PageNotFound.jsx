@@ -1,8 +1,9 @@
 import React from 'react'
+import Layout from '../components/Layout'
 
 const PageNotFound = () => {
     return (
-        <div>404!  PageNotFound</div>
+        <Layout>404!  PageNotFound</Layout>
     )
 }
 
