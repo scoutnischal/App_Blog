@@ -8,6 +8,7 @@ import Ram from '../assets/images/Ram.png';
 import SSD from '../assets/images/SSD.png';
 import MotherBoard from '../assets/images/MotherBoard.png';
 import '../css/ComponentsPC.css';
+import { Link } from 'react-router-dom';
 
 const ComputerComponents = () => {
     const components = [
@@ -32,6 +33,7 @@ const ComputerComponents = () => {
                     <>
                         
                         <div key={pro.id} className="card-components">
+                            <Link to={"/products"}>
                             <div className="left-image">
                                <img  src={pro.image}  alt={pro.title}/>
                             </div>
@@ -41,6 +43,8 @@ const ComputerComponents = () => {
                                 <p>{pro.subtitle2}</p>
 
                             </div>
+                            
+                            </Link>
                         </div>
                        
                     </>

@@ -10,9 +10,9 @@ const productModel = require("../../models/Product");
           category: cid,
           _id: { $ne: pid },
         })
-        .select("-photo")
+        .select("-image")
         .limit(3)
-       // .populate("category");
+       .populate("category");
       res.status(200).send({
         success: true,
         products,

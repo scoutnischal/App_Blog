@@ -14,7 +14,7 @@ const order = async (req, res, next) => {
 
         const productDetails = await productModel
             .findOne({ slug: req.params.slug })
-            .select("-photo");
+            .select("-image");
         const user = await userModel //customer details 
             .findById({ _id: user_Id });
         const products = JSON.parse(JSON.stringify(productDetails));
@@ -58,7 +58,8 @@ const order = async (req, res, next) => {
     } catch (error) {
         res.status(500).send({
             success: false,
-            message: "Error While User OrderProduct"
+            message: "Error While User OrderProduct",
+            error
         });
         console.log("Error in UserOrder", error);
     }

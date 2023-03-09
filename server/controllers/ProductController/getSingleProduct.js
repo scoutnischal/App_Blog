@@ -5,7 +5,7 @@ const productModel = require("../../models/Product");
     try {
       const product = await productModel
         .findOne({ slug: req.params.slug })
-        .select("-photo")
+        .select("-image")
        // .populate("category");
       res.status(200).send({
         success: true,

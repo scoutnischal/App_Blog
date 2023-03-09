@@ -4,8 +4,10 @@ import "../css/AllProducts.css"
 import Layout from './Layout';
 import { Checkbox, Radio } from 'antd';
 import { Prices } from './PriceFilter';
+import { useNavigate } from 'react-router-dom';
 
 const AllProductsPage = () => {
+    const navigate = useNavigate();
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
     const [checked, setChecked] = useState([]);
@@ -86,7 +88,7 @@ const AllProductsPage = () => {
         <Layout>
             <div className="main-all-products">
                 <div className="header-product">
-                    <span style={{ fontSize: "30px",padding:"0 1rem", borderBottomStyle: "solid" }}>All Products</span>
+                    <span style={{ fontSize: "30px", padding: "0 1rem", borderBottomStyle: "solid" }}>All Products</span>
                     <hr />
                 </div>
                 <div className="content-product">
@@ -126,7 +128,7 @@ const AllProductsPage = () => {
                         <div className="display-product">
                             {
                                 products.slice(pages * 10 - 10, pages * 10).map(((prod) => (
-                                    <div className='card-product' key={prod.id} >
+                                    <div className='card-product' key={prod.id} onClick={() => navigate(`/product/${prod.slug}`)} >
                                         <img src={`/api/product/product-photo/${prod._id}`} alt={prod.title} />
                                         <div>{prod.title}</div>
                                         <div style={{ fontWeight: "600" }}>RS {prod.price}</div>
@@ -138,7 +140,7 @@ const AllProductsPage = () => {
                             products.length > 0 && (<div className='pagination'>
                                 <span onClick={() => selectPageHandler(pages - 1)}>◀</span>
                                 {
-                                    [...Array(products.length %10)].map((_, i) => {
+                                    [...Array(products.length % 10)].map((_, i) => {
                                         return <span key={i} className={pages === i + 1 ? "pagination__active" : ""} onClick={() => selectPageHandler(i + 1)}>{i + 1}</span>
                                     })
                                 }

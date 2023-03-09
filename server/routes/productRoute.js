@@ -10,7 +10,7 @@ const updateProductController = require("../controllers/ProductController/update
 const productFiltersController = require("../controllers/ProductController/filterProduct");
 const productCountController = require("../controllers/ProductController/countProduct");
 const relatedProductController = require('../controllers/ProductController/similarProducts');
-
+const searchProductController=require('../controllers/ProductController/searchProduct');
 const router = express.Router();
 
 //routes
@@ -45,13 +45,13 @@ router.get("/related-product/:pid/:cid", relatedProductController);
 // //filter product
 router.post("/product-filters", productFiltersController);
 
+//search product
+router.get("/search/:keyword", searchProductController);
 
 module.exports = router;
 
 
 
-// //search product
-// router.get("/search/:keyword", searchProductController);
 
 
 

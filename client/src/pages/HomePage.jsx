@@ -13,7 +13,7 @@ const HomePage = () => {
     {/* <FetchProductsHome/> */}
     <ComputerComponents/>
     <div>
-    <pre>{JSON.stringify(auth,null,4)}</pre>
+
     </div>
     </Layout>
   )

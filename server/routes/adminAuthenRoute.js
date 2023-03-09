@@ -8,6 +8,7 @@ const { isAdmin, requireSignIn } = require("../middleware/authMiddleware");
 const forgotPasswordController = require('../controllers/AdminAuthenticationController/forgotpasswordController')
 const updateProfileController = require('../controllers/AdminAuthenticationController/updateProfile');
 const { isUser, requireUserSignIn } = require("../middlewares/authmiddleware");
+const GetOrdersController = require("../controllers/OrderController/GetOrdersController");
 
 
 //REGISTER ADMIN
@@ -35,5 +36,8 @@ router.get("/user-auth", requireUserSignIn, isUser, (req, res) => {
 
 //update profile
 router.put("/profile", requireSignIn, updateProfileController);
+
+// orders
+router.get('/orders',requireSignIn,GetOrdersController);
 
 module.exports = router;

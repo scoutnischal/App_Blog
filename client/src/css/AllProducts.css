@@ -33,7 +33,7 @@ ul>li{
     
 }
 .display-product{
-    max-width: 80%;
+    max-width: 70%;
     margin: 10px auto;
     display: flex;
     flex-wrap: wrap;
@@ -43,7 +43,7 @@ ul>li{
     margin: 1rem ;
     padding: 1rem;
     border-radius: 1rem;
-    max-width: 20%;
+    max-width: 30%;
     cursor: pointer;
     display: flex;
     align-items: center;
